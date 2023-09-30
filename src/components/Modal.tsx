@@ -34,7 +34,7 @@ export const Modal: React.FC<ModalProps> = ({ opened, toggleOpen }) => {
             </p>
             <img
               className="mt-8"
-              src="/images/hint.png"
+              src="/pathfinder/images/hint.png"
               alt="hint screenshot"
             />
           </div>
