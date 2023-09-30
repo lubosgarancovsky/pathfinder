@@ -34,7 +34,7 @@ const App = () => {
           setHasFinishedRunning(true);
           setSnackbar({
             opened: true,
-            pathLenth: path.length,
+            pathLenth: path.length - 2,
             variant: path.length ? "success" : "warning",
           });
         };
