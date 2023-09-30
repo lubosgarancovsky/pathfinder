@@ -18,6 +18,13 @@ export const Canvas = forwardRef<HTMLCanvasElement, CanvasProps>(
           onMouseDown={(e: React.MouseEvent<HTMLCanvasElement>) =>
             handler?.onMouseDown?.(e)
           }
+          onTouchStart={(e: React.TouchEvent<HTMLCanvasElement>) =>
+            handler?.onTouchStart?.(e)
+          }
+          onTouchMove={(e: React.TouchEvent<HTMLCanvasElement>) =>
+            handler?.onTouchMove?.(e)
+          }
+          onTouchEnd={() => handler?.onTouchEnd?.()}
           onMouseUp={() => handler?.onMouseUp?.()}
         >
           Your browser does not support HTML5 canvas

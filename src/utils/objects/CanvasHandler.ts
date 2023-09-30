@@ -46,18 +46,57 @@ export class CanvasHandler {
   }
 
   onMouseMove(e: React.MouseEvent<HTMLCanvasElement>) {
+    e.preventDefault();
     if (this.isMouseDown) {
-      this.draw(e);
+      const { mouseX, mouseY } = this.getRelativeMousePosition(e);
+      this.draw(mouseX, mouseY);
     }
   }
 
   onMouseDown(e: React.MouseEvent<HTMLCanvasElement>) {
+    e.preventDefault();
     this.isMouseDown = true;
-    this.draw(e);
+    const { mouseX, mouseY } = this.getRelativeMousePosition(e);
+    this.draw(mouseX, mouseY);
   }
 
   onMouseUp() {
     this.isMouseDown = false;
+  }
+
+  onTouchStart(e: React.TouchEvent<HTMLCanvasElement>) {
+    e.preventDefault();
+    this.isMouseDown = true;
+    const { mouseX, mouseY } = this.getRelativeTouchPosition(e);
+    this.draw(mouseX, mouseY);
+  }
+
+  onTouchMove(e: React.TouchEvent<HTMLCanvasElement>) {
+    e.preventDefault();
+    if (this.isMouseDown) {
+      const { mouseX, mouseY } = this.getRelativeTouchPosition(e);
+      this.draw(mouseX, mouseY);
+    }
+  }
+
+  onTouchEnd() {
+    this.isMouseDown = false;
+  }
+
+  getRelativeTouchPosition(e: React.TouchEvent<HTMLCanvasElement>): {
+    mouseX: number;
+    mouseY: number;
+  } {
+    const touch = e.touches[0];
+    if (touch) {
+      const rect = this.canvas.getBoundingClientRect();
+      const mouseX = touch.clientX - rect.left;
+      const mouseY = touch.clientY - rect.top;
+
+      return { mouseX, mouseY };
+    }
+
+    return { mouseX: 0, mouseY: 0 };
   }
 
   getRelativeMousePosition(e: React.MouseEvent<HTMLCanvasElement>): {
@@ -71,8 +110,7 @@ export class CanvasHandler {
     return { mouseX, mouseY };
   }
 
-  draw(e: React.MouseEvent<HTMLCanvasElement>) {
-    const { mouseX, mouseY } = this.getRelativeMousePosition(e);
+  draw(mouseX: number, mouseY: number) {
     const selectedTool = this.selectedTool;
 
     if (this.isMouseDown && selectedTool !== "none" && !this.isRunning) {
