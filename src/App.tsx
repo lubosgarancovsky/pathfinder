@@ -12,7 +12,7 @@ const App = () => {
   const [hasFinishedRunning, setHasFinishedRunning] = useState(false);
   const [infoModalOpened, setInfoModalOpened] = useState(true);
   const [snackbar, setSnackbar] = useState({
-    opened: true,
+    opened: false,
     pathLenth: 0,
     variant: "success",
   });

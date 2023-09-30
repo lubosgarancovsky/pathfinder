@@ -1,27 +1,43 @@
-# React + TypeScript + Vite
+# Pathfinding Visualizer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React app that visualizes the steps of pathfinding algorithms by utilizing HTML5 canvas.
 
-Currently, two official plugins are available:
+## Drawing
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Before running the pathfinding algorithm, you must specify the starting and ending points. You can do that by selecting one of the first two buttons in the top left corner with the arrow icons inside them.
 
-## Expanding the ESLint configuration
+**Buttons**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Starting point
+- Ending point
+- Barrier
+- Eraser
+- Clear
 
-- Configure the top-level `parserOptions` property like this:
+You can also draw obstacles for the algorithm by selecting the "Barrier" tool, or erase your mistakes with the "Eraser," while the red "Clear" button flushes the whole canvas.
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+![Alt text](public/images/hint.png)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Running Pathfinder
+
+After drawing your maze and setting up starting and ending positions, you can run the selected algorithm by pressing the green "Run" button. Now you can watch the purple tile make its way towards the magenta tile.
+
+![Alt text](public/images/hint2.png)
+
+## Visualization
+
+Pathfinding is visualized by green and white squares, which are drawn onto the board as the algorithm progresses.
+
+- Dark green -> visited nodes
+- Light green -> open set
+- White -> path found by the algorithm
+
+After the pathfinder is done, watch out for a little pop-up snackbar that appears in the bottom left corner. It carries information about the length of the path.
+
+![Alt text](public/images/hint3.png)
+
+## Repeat
+
+After the pathfinding is done, a "New scenario" button appears in place of the "Run" button. By clicking on it, you clear the visualization, but you keep the board layout, so you can run the same scenario again or make slight changes to it.
+
+![Alt text](public/images/hint4.png)
