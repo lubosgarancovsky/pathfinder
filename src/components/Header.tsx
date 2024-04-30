@@ -95,6 +95,7 @@ export const Header: React.FC<HeaderProps> = ({
           value={selectedAlg}
         >
           <option value="astar">A* (A star)</option>
+          <option value="djikstra">Djikstra</option>
         </select>
         {isFinished && (
           <IconButton

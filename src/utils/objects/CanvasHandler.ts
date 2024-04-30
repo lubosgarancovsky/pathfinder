@@ -183,6 +183,7 @@ export class CanvasHandler {
         alghoritm,
         this.startNode,
         this.endNode,
+        this.grid,
         (path: GridNode[]) => {
           this.isRunning = false;
           this.onChangeRunning(this.isRunning);
