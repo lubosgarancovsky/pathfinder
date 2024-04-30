@@ -2,6 +2,8 @@
 
 A React app that visualizes the steps of pathfinding algorithms by utilizing HTML5 canvas.
 
+<a href="https://lubosgarancovsky.github.io/pathfinder/">https://lubosgarancovsky.github.io/pathfinder/</a>
+
 ## Drawing
 
 Before running the pathfinding algorithm, you must specify the starting and ending points. You can do that by selecting one of the first two buttons in the top left corner with the arrow icons inside them.
