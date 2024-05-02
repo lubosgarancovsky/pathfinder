@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Canvas, Header } from "./components";
 import { Algoritm, SelectedTool } from "./utils/types";
-import { CanvasHandler } from "./utils/objects/CanvasHandler";
+import { CanvasHandler } from "./utils/canvas/CanvasHandler";
 import { Modal } from "./components/Modal";
-import { GridNode } from "./utils/objects/GridNode";
+import { GridNode } from "./utils/grid/GridNode";
 import { Snackbar, SnackbarVariant } from "./components/Snackbar";
 
 const App = () => {

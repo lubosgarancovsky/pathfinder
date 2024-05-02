@@ -1,4 +1,4 @@
-import { GridNodeType } from "./objects/GridNodeType";
+import { GridNodeType } from "./grid/GridNodeType";
 import { SelectedTool } from "./types";
 
 export const NODE_TYPE_MAP: Record<SelectedTool, GridNodeType> = {

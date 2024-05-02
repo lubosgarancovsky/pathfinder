@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { CanvasHandler } from "../utils/objects/CanvasHandler";
+import { CanvasHandler } from "../utils/canvas/CanvasHandler";
 
 interface CanvasProps {
   handler: CanvasHandler | null;

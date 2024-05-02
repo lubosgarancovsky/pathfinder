@@ -1,10 +1,10 @@
 import { NODE_TYPE_MAP } from "../constants";
 import { Algoritm, SelectedTool } from "../types";
-import { Grid } from "./Grid";
-import { GridNode } from "./GridNode";
-import { GridNodeType } from "./GridNodeType";
+import { Grid } from "../grid/Grid";
+import { GridNode } from "../grid/GridNode";
+import { GridNodeType } from "../grid/GridNodeType";
 import { Painter } from "./Painter";
-import { Pathfinder } from "./Pathfinder";
+import { Pathfinder } from "../../Pathfinder";
 
 export class CanvasHandler {
   private canvas: HTMLCanvasElement;
