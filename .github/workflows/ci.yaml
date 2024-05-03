@@ -6,8 +6,8 @@ on:
       - main
 
 jobs:
-  predeploy:
-    name: Predeploy
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
 
     steps:
@@ -24,20 +24,6 @@ jobs:
 
       - name: Predeploy
         run: npm run predeploy
-
-  deploy:
-    name: Deploy
-    needs: predeploy
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: "14"
 
       - name: Deploy
         run: npm run deploy
