@@ -1,29 +1,19 @@
-import { wait } from "..";
+import { manhattan, wait } from "..";
 import { GridNode } from "../grid/GridNode";
 import { Painter } from "../canvas/Painter";
 
 export class Astar {
-  constructor(private _painter: Painter) {}
-
-  /**
-   * Manhattan distance between two nodes
-   * @param {GridNode} node1
-   * @param {GridNode} node2
-   * @returns {number} Manhattan distance between two nodes
-   */
-  manhattan(node1: GridNode, node2: GridNode): number {
-    return (
-      Math.abs(node1.posY - node2.posY) + Math.abs(node1.posX - node2.posX)
-    );
-  }
-
   /**
    * Runs A* algorithm
    * @param {GridNode} startNode
    * @param {GridNode} endNode
    * @returns {GridNode[]} Array of nodes representing the closest path
    */
-  async run(startNode: GridNode, endNode: GridNode): Promise<GridNode[]> {
+  static async run(
+    painter: Painter,
+    startNode: GridNode,
+    endNode: GridNode
+  ): Promise<GridNode[]> {
     const openSet: GridNode[] = [];
     const closedSet: GridNode[] = [];
     const path: GridNode[] = [];
@@ -65,7 +55,7 @@ export class Astar {
       closedSet.push(current);
 
       if (current !== startNode && current !== endNode) {
-        this._painter.drawVisitedNode(current);
+        painter.drawVisitedNode(current);
       }
 
       const neighbours = current.neighbours;
@@ -80,14 +70,14 @@ export class Astar {
             openSet.push(neighbour);
 
             if (neighbour !== startNode && neighbour !== endNode) {
-              this._painter.drawOpenSetNode(neighbour);
+              painter.drawOpenSetNode(neighbour);
             }
           } else if (possibleG >= neighbour.g) {
             continue;
           }
 
           neighbour.g = possibleG;
-          neighbour.h = this.manhattan(neighbour, endNode);
+          neighbour.h = manhattan(neighbour, endNode);
           neighbour.f = neighbour.g + neighbour.h;
           neighbour.parent = current;
         }

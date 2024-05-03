@@ -1,11 +1,9 @@
 import { wait } from "..";
+import { Painter } from "../canvas/Painter";
 import { Grid } from "../grid/Grid";
 import { GridNode } from "../grid/GridNode";
-import { Painter } from "../canvas/Painter";
 
 export class Djikstra {
-  constructor(private _painter: Painter) {}
-
   /**
    * Runs Djikstra algorithm
    * @param {GridNode} startNode
@@ -13,7 +11,8 @@ export class Djikstra {
    * @param {Grid} grid
    * @returns {GridNode[]} Array of nodes representing the closest path
    */
-  async run(
+  static async run(
+    painter: Painter,
     startNode: GridNode,
     endNode: GridNode,
     grid: Grid
@@ -66,13 +65,13 @@ export class Djikstra {
       await wait(5);
 
       if (closestNode !== startNode) {
-        this._painter.drawVisitedNode(closestNode);
+        painter.drawVisitedNode(closestNode);
       }
 
       for (const neighbour of closestNode!.neighbours) {
         if (!visited.has(neighbour)) {
           if (neighbour !== startNode && neighbour !== endNode) {
-            this._painter.drawOpenSetNode(neighbour);
+            painter.drawOpenSetNode(neighbour);
           }
 
           const newDistance =

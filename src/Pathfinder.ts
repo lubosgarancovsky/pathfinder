@@ -9,14 +9,8 @@ import { Painter } from "./utils/canvas/Painter";
 export class Pathfinder {
   private _painter: Painter;
 
-  private astar: Astar;
-  private djikstra: Djikstra;
-
   constructor(painter: Painter) {
     this._painter = painter;
-
-    this.astar = new Astar(painter);
-    this.djikstra = new Djikstra(painter);
   }
 
   async visualisePath(path: GridNode[]) {
@@ -38,10 +32,10 @@ export class Pathfinder {
 
     switch (alghoritm) {
       case "astar":
-        path = await this.astar.run(start, end);
+        path = await Astar.run(this._painter, start, end);
         break;
       case "djikstra":
-        path = await this.djikstra.run(start, end, grid);
+        path = await Djikstra.run(this._painter, start, end, grid);
         break;
       default:
         onFinish(path);

@@ -1,0 +1,33 @@
+name: Main Branch Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+
+      - name: Predeploy
+        run: |
+          npm install
+          npm run predeploy
+
+      - name: Deploy
+        run: |
+          npm run deploy
+
+      - name: Clear
+        run: |
+          npm run clear
