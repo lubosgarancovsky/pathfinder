@@ -6,8 +6,31 @@ on:
       - main
 
 jobs:
+  predeploy:
+    name: Predeploy
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Clean up dist folder
+        run: rm -rf ./dist
+
   deploy:
     name: Deploy
+    needs: predeploy
     runs-on: ubuntu-latest
 
     steps:
@@ -17,17 +40,25 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "14"
-
-      - name: Predeploy
-        run: |
-          npm install
-          npm run predeploy
+          node-version: '14'
 
       - name: Deploy
-        run: |
-          npm run deploy
+        run: npm run deploy
+
+  
+  deploy:
+    name: Clear
+    needs: deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
 
       - name: Clear
-        run: |
-          npm run clear
+        run: npm run clear
