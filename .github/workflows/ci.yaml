@@ -19,6 +19,11 @@ jobs:
         with:
           node-version: "14"
 
+      - name: Set up Git identity
+        run: |
+        git config --global user.email "lubos.garancovsky@gmail.com"
+        git config --global user.name "Ľuboš Garančovský"
+
       - name: Install dependencies
         run: npm install
 
