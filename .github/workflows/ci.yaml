@@ -22,11 +22,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build
-        run: npm run build
-
-      - name: Clean up dist folder
-        run: rm -rf ./dist
+      - name: Predeploy
+        run: npm run predeploy
 
   deploy:
     name: Deploy
