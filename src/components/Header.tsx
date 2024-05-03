@@ -16,6 +16,7 @@ interface HeaderProps {
   onClearVisuals: () => void;
   isReadyToStart: boolean;
   isFinished: boolean;
+  version: string;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -25,6 +26,7 @@ export const Header: React.FC<HeaderProps> = ({
   onClearVisuals,
   isReadyToStart,
   isFinished,
+  version,
 }) => {
   const [selectedTool, setSelectedTool] = useState<SelectedTool>("none");
   const [selectedAlg, setSelectedAlg] = useState<Algoritm>("astar");
@@ -37,7 +39,7 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <header className="w-full p-2 bg-neutral-950 flex gap-2 flex-col-reverse sm:flex-row justify-between">
-      <ul className="flex gap-4 justify-between">
+      <ul className="flex gap-4 justify-between items-center">
         <li>
           <IconButton
             icon={<StartArrowIcon />}
@@ -86,7 +88,9 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={onClearAll}
           />
         </li>
+        <p className="text-xs text-neutral-600">Version: {version}</p>
       </ul>
+
       <div className="flex gap-4 items-center justify-between">
         <span>Algoritm:</span>
         <select

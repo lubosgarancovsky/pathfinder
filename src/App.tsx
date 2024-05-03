@@ -6,6 +6,8 @@ import { Modal } from "./components/Modal";
 import { GridNode } from "./utils/grid/GridNode";
 import { Snackbar, SnackbarVariant } from "./components/Snackbar";
 
+import { version } from "../package.json";
+
 const App = () => {
   const [handler, setHandler] = useState<CanvasHandler | null>(null);
   const [isRunning, setIsRunning] = useState(false);
@@ -76,6 +78,7 @@ const App = () => {
         }}
         isReadyToStart={!isRunning && !hasFinishedRunning}
         isFinished={hasFinishedRunning}
+        version={version}
       />
       <Canvas ref={canvasRef} handler={handler} />
     </div>

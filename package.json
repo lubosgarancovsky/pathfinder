@@ -1,7 +1,7 @@
 {
   "name": "web_react_pathfinding-visualiser",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "clear": "rmdir /s /q dist"
+    "clear": "rmdir /s /q dist",
+    "test-all": "npm run lint && tsc"
   },
   "dependencies": {
     "classnames": "^2.3.2",
